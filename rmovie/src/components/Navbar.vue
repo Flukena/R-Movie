@@ -17,21 +17,21 @@
             <li class="nav-item">
               <router-link class="nav-link" to="/random" style="margin-right: 15px" id="nav1">Random Movie</router-link>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link class="nav-link" to="/about" id="nav1">About Us</router-link>
-            </li>
+            </li> -->
           </ul>
         </div>
-        <nav class="navbar navbar-light" style="margin-right: 20px; background-color: black">
+        <!-- <nav class="navbar navbar-light" style="margin-right: 20px; background-color: black">
           <form class="form-inline">
             <div class="input-group">
-              <input class="form-control mr-sm-2" type="search" placeholder="Movie Search" aria-label="Search" />
+              <input class="form-control mr-sm-2" type="search" placeholder="Movie Search" aria-label="Search" v-model="search"/>
               <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">
                 Search
               </button>
             </div>
           </form>
-        </nav>
+        </nav> -->
         <!-- ไอเหื้ยจีน -->
         
         <router-link class="btn btn-primary" style="margin-right: 10px;" to="/user" v-if="auth">{{ this.$users.user_name }}</router-link>
@@ -215,6 +215,7 @@ export default {
       repassword_check: null,
       mobile_check: null,
 
+      
     };
   },
   methods: {

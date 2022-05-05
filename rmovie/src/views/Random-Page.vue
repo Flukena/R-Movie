@@ -48,7 +48,7 @@
                           </div>
                           <div class="d-flex flex-row align-items-center text-primary">
                             <!-- <b-button variant="danger" @click="deleteComment(com)">X</b-button> -->
-                            <button type="button" class="btn-close" @click="deleteComment(com)" aria-label="Close"></button>
+                            <button type="button" class="btn-close" @click="deleteComment(com)" v-if="com.comment_by_email == user.user_email" aria-label="Close"></button>
                           </div>
                         </div>
                       </div>
@@ -163,7 +163,7 @@
           <label class="form-check-label" for="inlineCheckbox2">Crime</label>
         </div>
         <div>
-          <!-- <span style="color: white">Checked names: {{ randommovies.length }}</span> -->
+          <!-- <span style="color: white">Checked names: {{ search }}</span> -->
           <a
             class="btn btn-warning"
             href="#exampleModal5"
@@ -209,6 +209,7 @@ export default {
       token: "",
       user: "",
       name: "",
+      search: ""
     };
   },
   async created() {
