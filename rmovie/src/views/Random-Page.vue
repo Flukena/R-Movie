@@ -45,12 +45,15 @@
                           <!-- <h3 class="small mb-0 ms-2">
                               {{ com.comment_by_email }}
                             </h3> -->
-                            <span style="font-size: 18px"><small class="font-weight-bold text-primary">{{ com.comment_by_email }}</small> <small class="font-weight-bold">{{ com.comment }}</small></span>
-                          </div>
-                          <div class="d-flex flex-row align-items-center text-primary">
-                            <!-- <b-button variant="danger" @click="deleteComment(com)">X</b-button> -->
-                            <button type="button" class="btn-close" @click="deleteComment(com)" v-if="com.comment_by_email == user.user_email" aria-label="Close"></button>
-                          </div>
+                          <span style="font-size: 18px"><small class="font-weight-bold text-primary">{{
+                              com.comment_by_email
+                          }}</small> <small class="font-weight-bold">{{ com.comment
+}}</small></span>
+                        </div>
+                        <div class="d-flex flex-row align-items-center text-primary">
+                          <!-- <b-button variant="danger" @click="deleteComment(com)">X</b-button> -->
+                          <button type="button" class="btn-close" @click="deleteComment(com)"
+                            aria-label="Close"></button>
                         </div>
                       </div>
                     </div>
@@ -115,20 +118,13 @@
           <label class="form-check-label" for="inlineCheckbox2">Crime</label>
         </div>
         <div>
-          <!-- <span style="color: white">Checked names: {{ search }}</span> -->
-          <a
-            class="btn btn-warning"
-            href="#exampleModal5"
-            data-bs-target="#exampleModal5"
-            data-bs-toggle="modal"
-            style="color: white; width: 20%; margin-top: 60px"
-            @click="randommovie()"
-            v-if="random != ''"
-            >RANDOM MOVIE</a
-          >
+          <!-- <span style="color: white">Checked names: {{ randommovies.length }}</span> -->
+          <a class="btn btn-warning" href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+            style="color: white; width: 20%; margin-top: 60px" @click="randommovie()" v-if="random != ''">RANDOM
+            MOVIE</a>
         </div>
       </div>
-    
+    </div>
   </body>
 </template>
 
@@ -161,7 +157,7 @@ export default {
       token: "",
       user: "",
       name: "",
-      search: ""
+      url_img: "",
     };
   },
   async created() {
