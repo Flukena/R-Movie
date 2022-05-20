@@ -4,287 +4,301 @@
     <div class="container">
       <div class="row">
         <div class="mt-5">
-        <nav class="navbar navbar-light" style="background-color: black;display: flex;justify-content: right">
-          <form class="form-inline">
-            <div class="input-group">
-              <input class="form-control mr-sm-2" type="search" placeholder="Movie Search" aria-label="Search" v-model="search" style="width: 400px"/>
-              <!-- <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">
+          <nav class="navbar navbar-light" style="background-color: black;display: flex;justify-content: right">
+            <form class="form-inline">
+              <div class="input-group">
+                <input class="form-control mr-sm-2" type="search" placeholder="Movie Search" aria-label="Search"
+                  v-model="search" style="width: 400px" />
+                <!-- <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">
                 Search
               </button> -->
-            </div>
-          </form>
-        </nav>
+              </div>
+            </form>
+          </nav>
         </div>
 
         <div v-if="search != ''">
           <div class="mt-5" style="height: 100vh">
-          <h1 class="mb-4">Result</h1>
-          <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-            <slide class="col" v-for="(post, index) in filteredList" :key="index">
-              <div class="card" id="blog" style="width: 15rem">
-                <img class="card-img-top" :src="post.image1" alt="Card image cap" style="max-height: 300px" />
-                <div class="card-body">
-                  <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">
-                    {{ post.title }}
-                  </h1>
-                  <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
-                    class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(post)">Watch</a>
+            <h1 class="mb-4">Result</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(post, index) in filteredList" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="post.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">
+                      {{ post.title }}
+                    </h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(post)">Watch</a>
+                  </div>
                 </div>
-              </div>
-            
-          </slide>
-          </carousel>
-        </div>
+
+              </slide>
+            </carousel>
+          </div>
         </div>
 
         <div v-if="search === ''">
 
-        <div class="mt-5">
-          <h1 class="mb-4">All Movies</h1>
-          <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-            <slide class="col" v-for="(movie, index) in movies.slice(0, 15)" :key="index">
-              <div class="card" id="blog" style="width: 15rem">
-                <img class="card-img-top" :src="movie.image1" alt="Card image cap" style="max-height: 300px" />
-                <div class="card-body">
-                  <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">
-                    {{ movie.title }}
-                  </h1>
-                  <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
-                    class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(movie)">Watch</a>
+          <div class="mt-5">
+            <h1 class="mb-4">All Movies</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(movie, index) in movies.slice(0, 15)" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="movie.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">
+                      {{ movie.title }}
+                    </h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(movie)">Watch</a>
+                  </div>
                 </div>
-              </div>
-            </slide>
-          </carousel>
-        </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5">
-          <h1 class="mb-4">Popular</h1>
-          <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-            <slide class="col" v-for="(poppular, index) in poppulars" :key="index">
-              <div class="card" id="blog" style="width: 15rem">
-                <img class="card-img-top" :src="poppular.image1" alt="Card image cap" style="max-height: 300px" />
-                <div class="card-body">
-                  <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ poppular.title
-                  }}</h1>
-                  <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
-                    class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(poppular)">Watch</a>
+          <div class="mt-5">
+            <h1 class="mb-4">Popular</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(poppular, index) in poppulars" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="poppular.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ poppular.title
+                    }}</h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(poppular)">Watch</a>
+                  </div>
                 </div>
-              </div>
-            </slide>
-          </carousel>
-        </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5 mb-5">
-          <h1 class="mb-4">Drama</h1>
-          <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-            <slide class="col" v-for="(drama, index) in dramas" :key="index">
-              <div class="card" id="blog" style="width: 15rem">
-                <img class="card-img-top" :src="drama.image1" alt="Card image cap" style="max-height: 300px" />
-                <div class="card-body">
-                  <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ drama.title }}
-                  </h1>
-                  <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
-                    class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(drama)">Watch</a>
+          <div class="mt-5 mb-5">
+            <h1 class="mb-4">Drama</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(drama, index) in dramas" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="drama.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ drama.title }}
+                    </h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(drama)">Watch</a>
+                  </div>
                 </div>
-              </div>
-            </slide>
-          </carousel>
-        </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5 mb-5">
-          <h1 class="mb-4">Crime</h1>
-          <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-            <slide class="col" v-for="(crime, index) in crimes" :key="index">
-              <div class="card" id="blog" style="width: 15rem">
-                <img class="card-img-top" :src="crime.image1" alt="Card image cap" style="max-height: 300px" />
-                <div class="card-body">
-                  <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ crime.title }}
-                  </h1>
-                  <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
-                    class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(crime)">Watch</a>
+          <div class="mt-5 mb-5">
+            <h1 class="mb-4">Crime</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(crime, index) in crimes" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="crime.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ crime.title }}
+                    </h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(crime)">Watch</a>
+                  </div>
                 </div>
-              </div>
-            </slide>
-          </carousel>
-        </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5 mb-5">
-          <h1 class="mb-4">Action</h1>
-          <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-            <slide class="col" v-for="(action, index) in actions" :key="index">
-              <div class="card" id="blog" style="width: 15rem">
-                <img class="card-img-top" :src="action.image1" alt="Card image cap" style="max-height: 300px" />
-                <div class="card-body">
-                  <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ action.title }}
-                  </h1>
-                  <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
-                    class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(action)">Watch</a>
+          <div class="mt-5 mb-5">
+            <h1 class="mb-4">Action</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(action, index) in actions" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="action.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ action.title
+                    }}
+                    </h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(action)">Watch</a>
+                  </div>
                 </div>
-              </div>
-            </slide>
-          </carousel>
-        </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5 mb-5">
-          <h1 class="mb-4">Thriller</h1>
-        <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-          <slide class="col" v-for="(thriller, index) in thrillers" :key="index">
-            <div class="card" id="blog" style="width: 15rem">
-              <img class="card-img-top" :src="thriller.image1" alt="Card image cap" style="max-height: 300px" />
-              <div class="card-body">
-                <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ thriller.title }}</h1>
-                <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal" class="btn btn-warning"
-                  style="color: white; width: 100%" @click="getmovie(thriller)">Watch</a>
-              </div>
-            </div>
-          </slide>
-        </carousel>
-        </div>
+          <div class="mt-5 mb-5">
+            <h1 class="mb-4">Thriller</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(thriller, index) in thrillers" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="thriller.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ thriller.title
+                    }}</h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(thriller)">Watch</a>
+                  </div>
+                </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5 mb-5">
-          <h1 class="mb-4">Adventure</h1>
-        <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-          <slide class="col" v-for="(adventure, index) in adventures" :key="index">
-            <div class="card" id="blog" style="width: 15rem">
-              <img class="card-img-top" :src="adventure.image1" alt="Card image cap" style="max-height: 300px" />
-              <div class="card-body">
-                <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ adventure.title }}</h1>
-                <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal" class="btn btn-warning"
-                  style="color: white; width: 100%" @click="getmovie(adventure)">Watch</a>
-              </div>
-            </div>
-          </slide>
-        </carousel>
-        </div>
+          <div class="mt-5 mb-5">
+            <h1 class="mb-4">Adventure</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(adventure, index) in adventures" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="adventure.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{
+                        adventure.title
+                    }}</h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(adventure)">Watch</a>
+                  </div>
+                </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5 mb-5">
-          <h1 class="mb-4">Fantasy</h1>
-        <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-          <slide class="col" v-for="(fantasy, index) in fantasys" :key="index">
-            <div class="card" id="blog" style="width: 15rem">
-              <img class="card-img-top" :src="fantasy.image1" alt="Card image cap" style="max-height: 300px" />
-              <div class="card-body">
-                <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ fantasy.title }}</h1>
-                <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal" class="btn btn-warning"
-                  style="color: white; width: 100%" @click="getmovie(fantasy)">Watch</a>
-              </div>
-            </div>
-          </slide>
-        </carousel>
-        </div>
+          <div class="mt-5 mb-5">
+            <h1 class="mb-4">Fantasy</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(fantasy, index) in fantasys" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="fantasy.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ fantasy.title
+                    }}</h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(fantasy)">Watch</a>
+                  </div>
+                </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5 mb-5">
-          <h1 class="mb-4">Sci-Fi</h1>
-        <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-          <slide class="col" v-for="(scifi, index) in scifis" :key="index">
-            <div class="card" id="blog" style="width: 15rem">
-              <img class="card-img-top" :src="scifi.image1" alt="Card image cap" style="max-height: 300px" />
-              <div class="card-body">
-                <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ scifi.title }}</h1>
-                <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal" class="btn btn-warning"
-                  style="color: white; width: 100%" @click="getmovie(scifi)">Watch</a>
-              </div>
-            </div>
-          </slide>
-        </carousel>
-        </div>
+          <div class="mt-5 mb-5">
+            <h1 class="mb-4">Sci-Fi</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(scifi, index) in scifis" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="scifi.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ scifi.title }}
+                    </h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(scifi)">Watch</a>
+                  </div>
+                </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5 mb-5">
-          <h1 class="mb-4">Biography</h1>
-        <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-          <slide class="col" v-for="(biography, index) in biographys" :key="index">
-            <div class="card" id="blog" style="width: 15rem">
-              <img class="card-img-top" :src="biography.image1" alt="Card image cap" style="max-height: 300px" />
-              <div class="card-body">
-                <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ biography.title }}</h1>
-                <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal" class="btn btn-warning"
-                  style="color: white; width: 100%" @click="getmovie(biography)">Watch</a>
-              </div>
-            </div>
-          </slide>
-        </carousel>
-        </div>
+          <div class="mt-5 mb-5">
+            <h1 class="mb-4">Biography</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(biography, index) in biographys" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="biography.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{
+                        biography.title
+                    }}</h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(biography)">Watch</a>
+                  </div>
+                </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5 mb-5">
-          <h1 class="mb-4">Mystery</h1>
-        <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-          <slide class="col" v-for="(mystery, index) in mysterys" :key="index">
-            <div class="card" id="blog" style="width: 15rem">
-              <img class="card-img-top" :src="mystery.image1" alt="Card image cap" style="max-height: 300px" />
-              <div class="card-body">
-                <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ mystery.title }}</h1>
-                <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal" class="btn btn-warning"
-                  style="color: white; width: 100%" @click="getmovie(mystery)">Watch</a>
-              </div>
-            </div>
-          </slide>
-        </carousel>
-        </div>
+          <div class="mt-5 mb-5">
+            <h1 class="mb-4">Mystery</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(mystery, index) in mysterys" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="mystery.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ mystery.title
+                    }}</h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(mystery)">Watch</a>
+                  </div>
+                </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5 mb-5">
-          <h1 class="mb-4">Romance</h1>
-        <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-          <slide class="col" v-for="(romance, index) in romances" :key="index">
-            <div class="card" id="blog" style="width: 15rem">
-              <img class="card-img-top" :src="romance.image1" alt="Card image cap" style="max-height: 300px" />
-              <div class="card-body">
-                <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ romance.title }}</h1>
-                <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal" class="btn btn-warning"
-                  style="color: white; width: 100%" @click="getmovie(romance)">Watch</a>
-              </div>
-            </div>
-          </slide>
-        </carousel>
-        </div>
+          <div class="mt-5 mb-5">
+            <h1 class="mb-4">Romance</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(romance, index) in romances" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="romance.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ romance.title
+                    }}</h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(romance)">Watch</a>
+                  </div>
+                </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5 mb-5">
-          <h1 class="mb-4">War</h1>
-        <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-          <slide class="col" v-for="(war, index) in wars" :key="index">
-            <div class="card" id="blog" style="width: 15rem">
-              <img class="card-img-top" :src="war.image1" alt="Card image cap" style="max-height: 300px" />
-              <div class="card-body">
-                <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ war.title }}</h1>
-                <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal" class="btn btn-warning"
-                  style="color: white; width: 100%" @click="getmovie(war)">Watch</a>
-              </div>
-            </div>
-          </slide>
-        </carousel>
-        </div>
+          <div class="mt-5 mb-5">
+            <h1 class="mb-4">War</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(war, index) in wars" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="war.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ war.title }}
+                    </h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(war)">Watch</a>
+                  </div>
+                </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5 mb-5">
-          <h1 class="mb-4">Comedy</h1>
-        <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-          <slide class="col" v-for="(comedy, index) in comedys" :key="index">
-            <div class="card" id="blog" style="width: 15rem">
-              <img class="card-img-top" :src="comedy.image1" alt="Card image cap" style="max-height: 300px" />
-              <div class="card-body">
-                <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ comedy.title }}</h1>
-                <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal" class="btn btn-warning"
-                  style="color: white; width: 100%" @click="getmovie(comedy)">Watch</a>
-              </div>
-            </div>
-          </slide>
-        </carousel>
-        </div>
+          <div class="mt-5 mb-5">
+            <h1 class="mb-4">Comedy</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(comedy, index) in comedys" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="comedy.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ comedy.title
+                    }}</h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(comedy)">Watch</a>
+                  </div>
+                </div>
+              </slide>
+            </carousel>
+          </div>
 
-        <div class="mt-5 mb-5">
-          <h1 class="mb-4">Western</h1>
-        <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
-          <slide class="col" v-for="(western, index) in westerns" :key="index">
-            <div class="card" id="blog" style="width: 15rem">
-              <img class="card-img-top" :src="western.image1" alt="Card image cap" style="max-height: 300px" />
-              <div class="card-body">
-                <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ western.title }}</h1>
-                <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal" class="btn btn-warning"
-                  style="color: white; width: 100%" @click="getmovie(western)">Watch</a>
-              </div>
-            </div>
-          </slide>
-        </carousel>
-        </div>
-        
+          <div class="mt-5 mb-5">
+            <h1 class="mb-4">Western</h1>
+            <carousel :per-page="5" :autoplay="false" :loop="true" :autoplayHoverPause="true">
+              <slide class="col" v-for="(western, index) in westerns" :key="index">
+                <div class="card" id="blog" style="width: 15rem">
+                  <img class="card-img-top" :src="western.image1" alt="Card image cap" style="max-height: 300px" />
+                  <div class="card-body">
+                    <h1 class="card-title" style="font-size: 17px; font-weight: 600; min-height: 40px">{{ western.title
+                    }}</h1>
+                    <a href="#exampleModal5" data-bs-target="#exampleModal5" data-bs-toggle="modal"
+                      class="btn btn-warning" style="color: white; width: 100%" @click="getmovie(western)">Watch</a>
+                  </div>
+                </div>
+              </slide>
+            </carousel>
+          </div>
+
         </div>
 
         <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -314,7 +328,7 @@
                     <p>{{ blog.crew }}</p>
                     <p>{{ blog.storyline }}</p>
                     <h5>User Comment</h5>
-                    <b-input-group style="margin-bottom: 15px;" v-if="user.user_name != null" :prepend="user.user_name"
+                    <b-input-group style="margin-bottom: 15px;"  :prepend="name"
                       class="mt-3">
                       <b-form-input v-model="comment"></b-form-input>
                       <b-input-group-append>
@@ -327,17 +341,21 @@
                         <!-- <p>{{ com.comment }}</p> -->
                         <div class="d-flex justify-content-between align-items-center">
                           <div class="user d-flex flex-row align-items-center">
-                            <img :src="getAvata(com.user_name)" alt="avatar" width="60" height="60" />
+                            <img :src="getAvata(com.comment_by_email)" alt="avatar" width="60" height="60" />
                             <!-- <h3 class="small mb-0 ms-2">
                               {{ com.comment_by_email }}
                             </h3> -->
-                            <span style="font-size: 18px"><small class="font-weight-bold text-primary">{{ com.comment_by_email }}</small> <small class="font-weight-bold">{{ com.comment }}</small></span>
+                            <span style="font-size: 18px"><small class="font-weight-bold text-primary">{{
+                                com.comment_by_email
+                            }}</small> <small class="font-weight-bold">{{ com.comment
+}}</small></span>
                           </div>
                           <div class="d-flex flex-row align-items-center text-primary">
                             <!-- <b-button variant="danger" @click="deleteComment(com)">X</b-button> -->
-                            <button type="button" class="btn-close" @click="deleteComment(com)"  v-if="com.comment_by_email == user.user_email" aria-label="Close"></button>
+                            <button type="button" class="btn-close" @click="deleteComment(com)"
+                              v-if="com.comment_by_email == user.user_email" aria-label="Close"></button>
 
-                            
+
                           </div>
                         </div>
                       </div>
@@ -388,11 +406,11 @@ export default {
       mysterys: [],
       wars: [],
       comedys: [],
-      token: "",
+      token: null,
       user: "",
       name: "",
       search: "",
-      
+
     };
   },
   async created() {
@@ -416,13 +434,18 @@ export default {
     this.mystery()
     this.war()
     this.comedy()
-
-},
+    if (this.$cookies.get('refresh_token') == null) {
+      this.token = null
+      this.user = null
+      this.name = ""
+    }
+  },
 
   updated() {
     if (this.$cookies.get('refresh_token') == null) {
       this.token = null
       this.user = null
+      this.name = ""
     }
   },
   computed: {
@@ -445,7 +468,7 @@ export default {
       } else {
         this.user = jwtDecode(this.token)
         if (this.$cookies.get('refresh_token') != null) {
-        this.user = jwtDecode(this.$cookies.get('refresh_token'))
+          this.user = jwtDecode(this.$cookies.get('refresh_token'))
 
         }
 
@@ -583,128 +606,128 @@ export default {
         }
       })
       // console.log(this.dramas)
-    this.checkLogin()
-  },
-  thrillermovie() {
-        this.movies.forEach(movie =>{
-          if(movie.Genre != undefined){
+      this.checkLogin()
+    },
+    thrillermovie() {
+      this.movies.forEach(movie => {
+        if (movie.Genre != undefined) {
 
-        (movie.Genre).forEach(element => {
-          if(element == 'Thriller'){
-            this.thrillers.push(movie)
-          }
-        });
-          }
-        })
+          (movie.Genre).forEach(element => {
+            if (element == 'Thriller') {
+              this.thrillers.push(movie)
+            }
+          });
+        }
+      })
       // console.log(this.dramas)
     },
     adventure() {
-      this.movies.forEach(movie =>{
-          if(movie.Genre != undefined){
+      this.movies.forEach(movie => {
+        if (movie.Genre != undefined) {
 
-        (movie.Genre).forEach(element => {
-          if(element == 'Adventure'){
-            this.adventures.push(movie)
-          }
-        });
-          }
-        })
+          (movie.Genre).forEach(element => {
+            if (element == 'Adventure') {
+              this.adventures.push(movie)
+            }
+          });
+        }
+      })
     },
     fantasy() {
-      this.movies.forEach(movie =>{
-          if(movie.Genre != undefined){
+      this.movies.forEach(movie => {
+        if (movie.Genre != undefined) {
 
-        (movie.Genre).forEach(element => {
-          if(element == 'Fantasy'){
-            this.fantasys.push(movie)
-          }
-        });
-          }
-        })
+          (movie.Genre).forEach(element => {
+            if (element == 'Fantasy') {
+              this.fantasys.push(movie)
+            }
+          });
+        }
+      })
     },
     western() {
-      this.movies.forEach(movie =>{
-          if(movie.Genre != undefined){
+      this.movies.forEach(movie => {
+        if (movie.Genre != undefined) {
 
-        (movie.Genre).forEach(element => {
-          if(element == 'Western'){
-            this.westerns.push(movie)
-          }
-        });
-          }
-        })
+          (movie.Genre).forEach(element => {
+            if (element == 'Western') {
+              this.westerns.push(movie)
+            }
+          });
+        }
+      })
     },
     romance() {
-      this.movies.forEach(movie =>{
-          if(movie.Genre != undefined){
+      this.movies.forEach(movie => {
+        if (movie.Genre != undefined) {
 
-        (movie.Genre).forEach(element => {
-          if(element == 'Romance'){
-            this.romances.push(movie)
-          }
-        });
-          }
-        })
+          (movie.Genre).forEach(element => {
+            if (element == 'Romance') {
+              this.romances.push(movie)
+            }
+          });
+        }
+      })
     },
     scifi() {
-      this.movies.forEach(movie =>{
-          if(movie.Genre != undefined){
+      this.movies.forEach(movie => {
+        if (movie.Genre != undefined) {
 
-        (movie.Genre).forEach(element => {
-          if(element == 'Sci-Fi'){
-            this.scifis.push(movie)
-          }
-        });
-          }
-        })
+          (movie.Genre).forEach(element => {
+            if (element == 'Sci-Fi') {
+              this.scifis.push(movie)
+            }
+          });
+        }
+      })
     },
     biography() {
-      this.movies.forEach(movie =>{
-          if(movie.Genre != undefined){
+      this.movies.forEach(movie => {
+        if (movie.Genre != undefined) {
 
-        (movie.Genre).forEach(element => {
-          if(element == 'Biography'){
-            this.biographys.push(movie)
-          }
-        });
-          }
-        })
+          (movie.Genre).forEach(element => {
+            if (element == 'Biography') {
+              this.biographys.push(movie)
+            }
+          });
+        }
+      })
     },
     mystery() {
-      this.movies.forEach(movie =>{
-          if(movie.Genre != undefined){
+      this.movies.forEach(movie => {
+        if (movie.Genre != undefined) {
 
-        (movie.Genre).forEach(element => {
-          if(element == 'Mystery'){
-            this.mysterys.push(movie)
-          }
-        });
-          }
-        })
+          (movie.Genre).forEach(element => {
+            if (element == 'Mystery') {
+              this.mysterys.push(movie)
+            }
+          });
+        }
+      })
     },
     war() {
-      this.movies.forEach(movie =>{
-          if(movie.Genre != undefined){
+      this.movies.forEach(movie => {
+        if (movie.Genre != undefined) {
 
-        (movie.Genre).forEach(element => {
-          if(element == 'War'){
-            this.wars.push(movie)
-          }
-        });
-          }
-        })
+          (movie.Genre).forEach(element => {
+            if (element == 'War') {
+              this.wars.push(movie)
+            }
+          });
+        }
+      })
     },
     comedy() {
-      this.movies.forEach(movie =>{
-          if(movie.Genre != undefined){
+      this.movies.forEach(movie => {
+        if (movie.Genre != undefined) {
 
-        (movie.Genre).forEach(element => {
-          if(element == 'Comedy'){
-            this.comedys.push(movie)
-          }
-        });
-          }
-        })
+          (movie.Genre).forEach(element => {
+            if (element == 'Comedy') {
+              this.comedys.push(movie)
+            }
+          });
+        }
+      })
     }
   },
 };
