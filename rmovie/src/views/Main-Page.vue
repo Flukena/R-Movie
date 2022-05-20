@@ -341,7 +341,7 @@
                         <!-- <p>{{ com.comment }}</p> -->
                         <div class="d-flex justify-content-between align-items-center">
                           <div class="user d-flex flex-row align-items-center">
-                            <img :src="getAvata(com.comment_by_email)" alt="avatar" width="60" height="60" />
+                            <img :src="getAvata(com.user_name)" alt="avatar" width="60" height="60" />
                             <!-- <h3 class="small mb-0 ms-2">
                               {{ com.comment_by_email }}
                             </h3> -->

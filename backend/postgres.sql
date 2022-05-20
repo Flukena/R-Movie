@@ -12,24 +12,25 @@ CREATE TABLE users(
 );
 
 
-CREATE TABLE movie_list( 
-  movie_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
-  rank int,
-  title TEXT,
-  fullTitle TEXT,
-  year INT,
-  image TEXT,
-  crew TEXT,
-  imDbRating FLOAT,
-  imDbRatingCount INT
- );
+-- CREATE TABLE movie_list( 
+--   movie_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+--   rank int,
+--   title TEXT,
+--   fullTitle TEXT,
+--   year INT,
+--   image TEXT,
+--   crew TEXT,
+--   imDbRating FLOAT,
+--   imDbRatingCount INT
+--  );
  
  CREATE TABLE comments(
    comment_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
    movie_id TEXT,
    comment_by_email TEXT,
    comment text,
-   
+   user_name text
+   created_on timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
  );
 
 
