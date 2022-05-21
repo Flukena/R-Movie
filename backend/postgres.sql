@@ -29,14 +29,8 @@ CREATE TABLE users(
    movie_id TEXT,
    comment_by_email TEXT,
    comment text,
-   user_name text
+   user_name text,
    created_on timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
  );
 
 
-insert into comments (movie_id, comment_by_email, comment, like_count) values ('tt0071562', 'flukgoza@gmail.com', 'Very Good', '1');
-
-
-insert into comments (movie_id, comment_by_email, comment, like_count) values ('tt0050083', 'flukgoza@gmail.com', 'Great!', '2');
-insert into comments (movie_id, comment_by_email, comment, like_count) values ('tt0108052', 'flukgoza@gmail.com', 'Hello World', '1');
-insert into comments (movie_id, comment_by_email, comment, like_count) values ('tt0167260', 'flukgoza@gmail.com', 'Very Very Good', '1')
